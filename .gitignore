@@ -29,3 +29,10 @@ shell.nix
 # vim temporary files
 **/.*.sw*
 .swp
+
+# Windows thumbnail cache files
+Thumbs.db
+Thumbs.db:encryptable
+
+.DS_Store
+

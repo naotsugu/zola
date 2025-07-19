@@ -405,7 +405,7 @@ impl Site {
                 if let Some(ref l) = lang {
                     index_section.file.name = format!("_index.{}", l);
                     index_section.path = format!("{}/", l);
-                    index_section.permalink = self.config.make_permalink(l);
+                    index_section.permalink = self.config.make_index_link(l);
                     let filename = format!("_index.{}.md", l);
                     index_section.file.path = self.content_path.join(&filename);
                     index_section.file.relative = filename;
@@ -1037,7 +1037,7 @@ impl Site {
             let sitemap = render_template("sitemap.xml", &self.tera, context, &self.config.theme)?;
             let file_name = format!("sitemap{}.xml", i + 1);
             self.write_content(&[], &file_name, sitemap)?;
-            let mut sitemap_url = self.config.make_permalink(&file_name);
+            let mut sitemap_url = self.config.make_index_link(&file_name);
             sitemap_url.pop(); // Remove trailing slash
             sitemap_index.push(sitemap_url);
         }
@@ -1141,7 +1141,7 @@ impl Site {
             let permalink: Cow<String> = if is_external_link(redirect_to) {
                 Cow::Borrowed(redirect_to)
             } else {
-                Cow::Owned(self.config.make_permalink(redirect_to))
+                Cow::Owned(self.config.make_index_link(redirect_to))
             };
             self.write_content(
                 &components,

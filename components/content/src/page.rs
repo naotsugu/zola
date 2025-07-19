@@ -179,7 +179,7 @@ impl Page {
             .map(|p| p.to_string())
             .filter(|p| !p.is_empty())
             .collect::<Vec<_>>();
-        page.permalink = config.make_permalink(&page.path);
+        page.permalink = config.make_index_link(&page.path);
 
         Ok(page)
     }
@@ -221,6 +221,7 @@ impl Page {
             permalinks,
             anchor_insert,
         );
+
         context.set_shortcode_definitions(shortcode_definitions);
         context.set_current_page_path(&self.file.relative);
         context.tera_context.insert("page", &SerializingPage::new(self, None, false));

@@ -109,7 +109,7 @@ impl Section {
             .map(|p| p.to_string())
             .filter(|p| !p.is_empty())
             .collect::<Vec<_>>();
-        section.permalink = config.make_permalink(&section.path);
+        section.permalink = config.make_index_link(&section.path);
         Ok(section)
     }
 

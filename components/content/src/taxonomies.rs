@@ -71,7 +71,7 @@ impl TaxonomyTerm {
         } else {
             format!("/{}/{}/", taxo_slug, item_slug)
         };
-        let permalink = config.make_permalink(&path);
+        let permalink = config.make_index_link(&path);
 
         // Taxonomy are almost always used for blogs so we filter by dates
         // and it's not like we can sort things across sections by anything other
@@ -170,7 +170,7 @@ impl Taxonomy {
         } else {
             format!("/{}/", slug)
         };
-        let permalink = config.make_permalink(&path);
+        let permalink = config.make_index_link(&path);
 
         Taxonomy {
             slug,

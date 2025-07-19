@@ -592,6 +592,10 @@ pub fn markdown_to_html(
                     let link = if is_colocated_asset_link(&dest_url) {
                         let link = format!("{}{}", context.current_page_permalink, &*dest_url);
                         link.into()
+                    } else if context.config.is_in_build_mode() && dest_url.starts_with('/') {
+                        // monkey patch
+                        let link = format!("{}{}", context.config.base_url, &*dest_url);
+                        link.into()
                     } else {
                         dest_url
                     };

@@ -226,6 +226,16 @@ impl Config {
         }
     }
 
+    pub fn make_index_link(&self, path: &str) -> String {
+        let permalink = self.make_permalink(path);
+        if self.is_in_build_mode() && !permalink.is_empty() && permalink.ends_with('/') {
+            // monkey patch
+            format!("{}index.html", permalink)
+        } else {
+            permalink
+        }
+    }
+
     /// Adds the default language to the list of languages if options for it are specified at base level of config.toml.
     /// If section for the same language also exists, the options at this section and base are merged and then adds it
     /// to list.
@@ -297,6 +307,10 @@ impl Config {
 
     pub fn is_in_check_mode(&self) -> bool {
         self.mode == Mode::Check
+    }
+
+    pub fn is_in_build_mode(&self) -> bool {
+        self.mode == Mode::Build
     }
 
     pub fn should_exclude_paginated_pages_in_sitemap(&self) -> bool {

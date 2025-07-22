@@ -3,6 +3,22 @@
 [![Build Status](https://dev.azure.com/getzola/zola/_apis/build/status/getzola.zola?branchName=master)](https://dev.azure.com/getzola/zola/_build/latest?definitionId=1&branchName=master)
 ![GitHub all releases](https://img.shields.io/github/downloads/getzola/zola/total)
 
+
+---
+
+## About this forks
+
+This repository is a customized version of the static site generator "Zola," featuring unique modifications to its source code that alter how URLs are generated.
+
+The original Zola generates what are known as "pretty URLs," which end with a trailing slash (e.g., /about/). On most web servers, a request to such a URL implicitly returns the /about/index.html file. However, this "directory indexing" feature may not work with certain hosting services or server configurations, preventing pages from being displayed correctly.
+
+The original Zola lacks a built-in configuration option to append index.html to URLs to work around this problem.
+
+This fork, therefore, modifies the source code directly. Instead of generating pretty URLs, its specification has been altered to always produce URLs that explicitly include index.html at the end (e.g., /about/index.html). This approach ensures that links to pages are reliable across any environment, independent of server behavior.
+
+---
+
+
 A fast static site generator in a single binary with everything built-in.
 
 To find out more see the [Zola Documentation](https://www.getzola.org/documentation/getting-started/overview/), look

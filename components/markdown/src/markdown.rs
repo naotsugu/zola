@@ -594,7 +594,11 @@ pub fn markdown_to_html(
                         link.into()
                     } else if context.config.is_in_build_mode() && dest_url.starts_with('/') {
                         // monkey patch
-                        let link = format!("{}{}", context.config.base_url, &*dest_url);
+                        let link = if context.config.base_url.ends_with('/') {
+                            format!("{}{}", context.config.base_url, &dest_url[1..])
+                        } else {
+                            format!("{}{}", context.config.base_url, &*dest_url)
+                        };
                         link.into()
                     } else {
                         dest_url
